@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace TicTacToe
 {
@@ -8,7 +9,7 @@ namespace TicTacToe
         {
             char[] Arr = Board();
             char Player = ChooseLetter();
-            char Comp;
+            char Comp;            
             if (Player == 'X')           
                 Comp = 'O';
             else
@@ -16,7 +17,9 @@ namespace TicTacToe
             Console.WriteLine("Player chose " + Player);
             Console.WriteLine("Computer chose " + Comp);
             DisplayBoard(Arr);
+            CheckWhoPlaysFirst();
             Arr = Move(Arr, Player);
+            DisplayBoard(Arr);
         }
         public static char[] Board()
         {
@@ -65,7 +68,6 @@ namespace TicTacToe
                 if (pos>9 || pos<1)
                 {
                     Console.WriteLine("Array out of Index");
-                    break;
                 }
                 else if (Arr[pos] == ' ' && pos >= 1 && pos <= 9)
                 {
@@ -80,5 +82,16 @@ namespace TicTacToe
             }
             return Arr;                   
         }        
+        private static void CheckWhoPlaysFirst()
+        {
+            Console.WriteLine("\n");
+            Random random = new Random();
+            int check = random.Next(0, 2);
+            if (check == 0)
+                Console.WriteLine("Player moves First");
+            else
+                Console.WriteLine("Computer moves First");
+            Console.WriteLine("\n");
+        }
     }
 }
