@@ -71,9 +71,14 @@ namespace TicTacToe
                 {
                     Arr[pos] = user;
                     break;
-                }                
+                }          
+                else
+                {
+                    Console.WriteLine("Index not available !!");
+                    break;
+                }                   
             }
             return Arr;                   
-        }
+        }        
     }
 }
