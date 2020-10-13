@@ -16,6 +16,7 @@ namespace TicTacToe
             Console.WriteLine("Player chose " + Player);
             Console.WriteLine("Computer chose " + Comp);
             DisplayBoard(Arr);
+            Arr = Move(Arr, Player);
         }
         public static char[] Board()
         {
@@ -51,7 +52,25 @@ namespace TicTacToe
             Console.WriteLine(Arr[4] + "  |  " + Arr[5] + "  |  " + Arr[6]);
             Console.WriteLine("--------------    ");
             Console.WriteLine(Arr[7] + "  |  " + Arr[8] + "  |  " + Arr[9]);
-
+        }
+        private static char[] Move(char[] Arr,char user)
+        {
+            
+            while (true)
+            {
+                Console.WriteLine("Enter Position where you want to make your move from 1-9");
+                int pos = Convert.ToInt32(Console.ReadLine());
+                if (pos>9)
+                {
+                    Console.WriteLine("Array out of Index");
+                }
+                if (Arr[pos] == ' ' && pos >= 1 && pos <= 9)
+                {
+                    Arr[pos] = user;
+                    break;
+                }                
+            }
+            return Arr;                   
         }
     }
 }
