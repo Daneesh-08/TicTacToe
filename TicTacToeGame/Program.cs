@@ -46,11 +46,11 @@ namespace TicTacToe
         }
         private static void DisplayBoard(char[] Arr)
         {
-            Console.WriteLine( Arr[0] +"  |  "+ Arr[1] +  "  |  " + Arr[2]);             
+            Console.WriteLine(Arr[1] +"   |  "+ Arr[2] +  "  |  " + Arr[3]);             
             Console.WriteLine("--------------    ");
-            Console.WriteLine(Arr[3] + "  |  " + Arr[4] + "  |  " + Arr[5]);
+            Console.WriteLine(Arr[4] + "  |  " + Arr[5] + "  |  " + Arr[6]);
             Console.WriteLine("--------------    ");
-            Console.WriteLine(Arr[6] + "  |  " + Arr[7] + "  |  " + Arr[8]);
+            Console.WriteLine(Arr[7] + "  |  " + Arr[8] + "  |  " + Arr[9]);
 
         }
     }
