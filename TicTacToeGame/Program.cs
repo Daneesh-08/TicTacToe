@@ -47,11 +47,13 @@ namespace TicTacToe
         }
         private static void DisplayBoard(char[] Arr)
         {
-            Console.WriteLine(Arr[1] +"   |  "+ Arr[2] +  "  |  " + Arr[3]);             
+            Console.WriteLine("\n");
+            Console.WriteLine(Arr[1] +"  |  "+ Arr[2] +  "  |  " + Arr[3]);             
             Console.WriteLine("--------------    ");
             Console.WriteLine(Arr[4] + "  |  " + Arr[5] + "  |  " + Arr[6]);
             Console.WriteLine("--------------    ");
             Console.WriteLine(Arr[7] + "  |  " + Arr[8] + "  |  " + Arr[9]);
+            Console.WriteLine("\n");
         }
         private static char[] Move(char[] Arr,char user)
         {
@@ -60,11 +62,12 @@ namespace TicTacToe
             {
                 Console.WriteLine("Enter Position where you want to make your move from 1-9");
                 int pos = Convert.ToInt32(Console.ReadLine());
-                if (pos>9)
+                if (pos>9 || pos<1)
                 {
                     Console.WriteLine("Array out of Index");
+                    break;
                 }
-                if (Arr[pos] == ' ' && pos >= 1 && pos <= 9)
+                else if (Arr[pos] == ' ' && pos >= 1 && pos <= 9)
                 {
                     Arr[pos] = user;
                     break;
