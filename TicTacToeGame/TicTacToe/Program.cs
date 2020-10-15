@@ -24,7 +24,7 @@ namespace TicTacToe
             Arr = Move(Arr, CurrentSymbol);
             DisplayBoard(Arr);
             Console.WriteLine("Check if Game is Won : " + IsWinner(Arr, Player));
-            int ComputerMove = GetComputerMove(Arr, Comp);
+            int ComputerMove = GetComputerMove(Arr, Comp, Player);
         }
         public static char[] Board()
         {
@@ -113,13 +113,15 @@ namespace TicTacToe
                 (b[1] == ch && b[5] == ch && b[9] == ch) ||
                 (b[7] == ch && b[5] == ch && b[3] == ch));
         }
-        private static int GetComputerMove(char[] board, char compLetter)
+        private static int GetComputerMove(char[] board, char compLetter, char playerletter)
         {
-            int winMove = GetWinningMove(board, compLetter);
-            if (winMove != 0)
-                return winMove;
-            else
-                return 0;
+            int compwinMove = GetWinningMove(board, compLetter);
+            if (compwinMove != 0)
+                return compwinMove;
+            int playerwinMove = GetWinningMove(board, playerletter);
+            if (playerwinMove != 0)
+                return playerwinMove;
+            return 0;
         }
         private static int GetWinningMove(char[] board, char letter)
         {
