@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.SymbolStore;
 using System.Text;
 
 namespace TicTacToe
@@ -23,6 +24,7 @@ namespace TicTacToe
             Arr = Move(Arr, CurrentSymbol);
             DisplayBoard(Arr);
             Console.WriteLine("Check if Game is Won : " + IsWinner(Arr, Player));
+            int ComputerMove = GetComputerMove(Arr, Comp);
         }
         public static char[] Board()
         {
@@ -110,6 +112,38 @@ namespace TicTacToe
                 (b[3] == ch && b[6] == ch && b[9] == ch) ||
                 (b[1] == ch && b[5] == ch && b[9] == ch) ||
                 (b[7] == ch && b[5] == ch && b[3] == ch));
+        }
+        private static int GetComputerMove(char[] board, char compLetter)
+        {
+            int winMove = GetWinningMove(board, compLetter);
+            if (winMove != 0)
+                return winMove;
+            else
+                return 0;
+        }
+        private static int GetWinningMove(char[] board, char letter)
+        {
+            for (int index = 1; index < board.Length; index++)
+            {
+                char[] copyBoard = GetCopyBoard(board);
+                if (IsSpaceFree(copyBoard, index))
+                {
+                    copyBoard[index] = letter;
+                    if (IsWinner(copyBoard, letter))
+                        return index;
+                }
+            }
+            return 0;
+        }
+        private static char[] GetCopyBoard(char[] board)
+        {
+            char[] boardCopy = new char[10];
+            Array.Copy(board, 0, boardCopy, 0, board.Length);
+            return boardCopy;
+        }
+        private static bool IsSpaceFree(char[] board, int index)
+        {
+            return board[index] == ' ';
         }
     }
 }
