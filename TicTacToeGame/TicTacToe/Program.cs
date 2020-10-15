@@ -121,8 +121,14 @@ namespace TicTacToe
             int playerwinMove = GetWinningMove(board, playerletter);
             if (playerwinMove != 0)
                 return playerwinMove;
-            int[] CornerMoves = { 1, 3, 7, 9 };
-            int computerMove = getRandomMoveFromList(board, CornerMoves);
+            int[] cornorMoves = { 1, 3, 7, 9 };
+            int computerMove = getRandomMoveFromList(board, cornorMoves);
+            if (computerMove != 0)
+                return computerMove;
+            if (IsSpaceFree(board, 5))
+                return 5;
+            int[] sideMoves = { 2, 4, 6, 8 };
+            computerMove = getRandomMoveFromList(board, sideMoves);
             if (computerMove != 0)
                 return computerMove;
             return 0;
