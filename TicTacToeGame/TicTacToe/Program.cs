@@ -115,12 +115,16 @@ namespace TicTacToe
         }
         private static int GetComputerMove(char[] board, char compLetter, char playerletter)
         {
-            int compwinMove = GetWinningMove(board, compLetter);
-            if (compwinMove != 0)
-                return compwinMove;
+            int winMove = GetWinningMove(board, compLetter);
+            if (winMove != 0)
+                return winMove;
             int playerwinMove = GetWinningMove(board, playerletter);
             if (playerwinMove != 0)
                 return playerwinMove;
+            int[] CornerMoves = { 1, 3, 7, 9 };
+            int computerMove = getRandomMoveFromList(board, CornerMoves);
+            if (computerMove != 0)
+                return computerMove;
             return 0;
         }
         private static int GetWinningMove(char[] board, char letter)
@@ -146,6 +150,15 @@ namespace TicTacToe
         private static bool IsSpaceFree(char[] board, int index)
         {
             return board[index] == ' ';
+        }
+        private static int getRandomMoveFromList(char[] board, int[] moves)
+        {
+            for (int index = 0; index < moves.Length; index++)
+            {
+                if (IsSpaceFree(board, moves[index]))
+                    return moves[index];
+            }
+            return 0;
         }
     }
 }
